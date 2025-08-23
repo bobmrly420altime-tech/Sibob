@@ -72,7 +72,7 @@ if (isset($_GET['up_ID'])) {
   <meta name="og:description" content="<?php echo $BRANDS ?> juga dikenal sebagai BPR Syariah Amanah Insani (BPRSAI), adalah sebuah bank pembiayaan rakyat syariah (BPRS) yang beroperasi berdasarkan prinsip syariah Islam untuk menjalankan kegiatan perbankan, seperti menghimpun dana melalui tabungan dan deposito serta menyalurkan dana melalui berbagai produk pembiayaan, dengan tujuan utama untuk terhindar dari unsur riba dan menjaga harta umat sesuai ajaran Islam." />
   <meta name="og:image" content="https://i.pinimg.com/736x/5c/15/42/5c1542eaaabd1f6a2bfef07ae094c7b1.jpg" />
   <link rel="manifest" href="https://g.lazcdn.com/g/lzdfe/pwa-assets/5.0.7/manifest/id.json">
-  <link rel="shortcut icon" href="https://ads.id/forums/favicon.ico" />
+  <link rel="shortcut icon" href="https://bprs.amanahinsani.co.id/wp-content/uploads/2019/11/Favicon_BPRSAI-1.png" />
   <link rel="canonical" href="<?php echo $urlPath ?>" />
   <link rel="amphtml" href="https://amanahinsani-bprs.web.app/?up_ID=<?php echo $BRANDS ?>" />
   <!-- start preload -->
